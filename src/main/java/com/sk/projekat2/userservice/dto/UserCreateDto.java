@@ -1,6 +1,6 @@
 package com.sk.projekat2.userservice.dto;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class UserCreateDto {
 	

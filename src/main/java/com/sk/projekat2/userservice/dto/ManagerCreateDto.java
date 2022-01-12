@@ -1,8 +1,8 @@
-package com.sk.projekat2.userservice.domain;
+package com.sk.projekat2.userservice.dto;
 
 import java.util.Date;
 
-public class Manager extends User{
+public class ManagerCreateDto extends UserCreateDto{
 	
 	private String hotelName;
 	private Date dateOfEmployment;

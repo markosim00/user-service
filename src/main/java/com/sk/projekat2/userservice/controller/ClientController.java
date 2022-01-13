@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sk.projekat2.userservice.dto.ClientCreateDto;
 import com.sk.projekat2.userservice.dto.ClientDto;
+import com.sk.projekat2.userservice.dto.DiscountDto;
 import com.sk.projekat2.userservice.dto.TokenRequestDto;
 import com.sk.projekat2.userservice.dto.TokenResponseDto;
 import com.sk.projekat2.userservice.service.ClientService;
@@ -37,6 +38,10 @@ public class ClientController {
 		return new ResponseEntity<>(clientService.findById(id), HttpStatus.OK);
 	}
 	
+	@GetMapping("/{id}/discount")
+    public ResponseEntity<DiscountDto> getDiscount(@PathVariable("id") Long id) {
+        return new ResponseEntity<>(clientService.findDiscount(id), HttpStatus.OK);
+    }
 	
 	@PostMapping
 	public ResponseEntity<ClientDto> saveClient(@RequestBody ClientCreateDto clientCreateDto){

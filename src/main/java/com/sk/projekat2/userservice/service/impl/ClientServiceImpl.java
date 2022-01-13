@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.sk.projekat2.userservice.domain.Client;
 import com.sk.projekat2.userservice.dto.ClientCreateDto;
 import com.sk.projekat2.userservice.dto.ClientDto;
+import com.sk.projekat2.userservice.dto.DiscountDto;
 import com.sk.projekat2.userservice.dto.TokenRequestDto;
 import com.sk.projekat2.userservice.dto.TokenResponseDto;
 import com.sk.projekat2.userservice.exception.NotFoundException;
@@ -67,6 +68,18 @@ public class ClientServiceImpl implements ClientService{
 			claims.put("id", client.getId());
 			claims.put("role", client.getRole().getName());
 			return new TokenResponseDto(tokenService.generate(claims));
+	}
+
+	@Override
+	public DiscountDto findDiscount(Long id) {
+		Client client = clientRepository.findById(id)
+				.orElseThrow(() -> new NotFoundException(String
+						.format("Client with id: %d not found", id)));
+		if(client.getNumberOfReservations() > 10 && client.getNumberOfReservations() < 20)
+			return new DiscountDto(10);
+		if(client.getNumberOfReservations() > 20)
+			return new DiscountDto(20);
+		return new DiscountDto(0);
 	}
 
 }

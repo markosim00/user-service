@@ -3,11 +3,8 @@ package com.sk.projekat2.userservice.mapper;
 import org.springframework.stereotype.Component;
 
 import com.sk.projekat2.userservice.domain.Client;
-import com.sk.projekat2.userservice.domain.User;
 import com.sk.projekat2.userservice.dto.ClientCreateDto;
 import com.sk.projekat2.userservice.dto.ClientDto;
-import com.sk.projekat2.userservice.dto.UserCreateDto;
-import com.sk.projekat2.userservice.dto.UserDto;
 import com.sk.projekat2.userservice.repository.RoleRepository;
 
 @Component

@@ -7,7 +7,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.sk.projekat2.userservice.domain.Client;
-import com.sk.projekat2.userservice.domain.User;
 import com.sk.projekat2.userservice.dto.ClientCreateDto;
 import com.sk.projekat2.userservice.dto.ClientDto;
 import com.sk.projekat2.userservice.dto.TokenRequestDto;
@@ -59,7 +58,7 @@ public class ClientServiceImpl implements ClientService{
 	@Override
 	public TokenResponseDto login(TokenRequestDto tokenRequestDto) {
 		Client client = clientRepository
-				.findUserByUsernameAndPassword(tokenRequestDto.getUsername(), tokenRequestDto.getPassword())
+				.findClientByUsernameAndPassword(tokenRequestDto.getUsername(), tokenRequestDto.getPassword())
 				.orElseThrow(() -> new NotFoundException(String
 						.format("Client with username: %s and password: %s not found", tokenRequestDto.getUsername(),
 								tokenRequestDto.getPassword())));

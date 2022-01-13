@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,10 +15,7 @@ import com.sk.projekat2.userservice.dto.ClientCreateDto;
 import com.sk.projekat2.userservice.dto.ClientDto;
 import com.sk.projekat2.userservice.dto.TokenRequestDto;
 import com.sk.projekat2.userservice.dto.TokenResponseDto;
-import com.sk.projekat2.userservice.dto.UserCreateDto;
-import com.sk.projekat2.userservice.dto.UserDto;
 import com.sk.projekat2.userservice.service.ClientService;
-import com.sk.projekat2.userservice.service.UserService;
 
 @RestController
 @RequestMapping("/user")

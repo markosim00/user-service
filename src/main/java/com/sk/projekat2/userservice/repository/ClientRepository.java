@@ -8,5 +8,5 @@ import com.sk.projekat2.userservice.domain.*;
 
 public interface ClientRepository extends JpaRepository<Client, Long>{
 	
-	Optional<Client> findUserByUsernameAndPassword(String username, String password);
+	Optional<Client> findClientByUsernameAndPassword(String username, String password);
 }

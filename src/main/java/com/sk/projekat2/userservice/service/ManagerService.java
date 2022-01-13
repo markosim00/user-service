@@ -3,15 +3,19 @@ package com.sk.projekat2.userservice.service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import com.sk.projekat2.userservice.dto.ClientCreateDto;
-import com.sk.projekat2.userservice.dto.ClientDto;
+import com.sk.projekat2.userservice.dto.ManagerCreateDto;
+import com.sk.projekat2.userservice.dto.ManagerDto;
+import com.sk.projekat2.userservice.dto.TokenRequestDto;
+import com.sk.projekat2.userservice.dto.TokenResponseDto;
 
 public interface ManagerService {
 	
-	Page<ClientDto> findAll(Pageable pageable);
+	Page<ManagerDto> findAll(Pageable pageable);
 	
-	ClientDto add(ClientCreateDto clientCreateDto);
+	ManagerDto add(ManagerCreateDto managerCreateDto);
 	
-	ClientDto findById(Long id);
+	TokenResponseDto login(TokenRequestDto tokenRequestDto);
+	
+	ManagerDto findById(Long id);
 
 }

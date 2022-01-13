@@ -8,46 +8,44 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sk.projekat2.userservice.dto.ManagerCreateDto;
+import com.sk.projekat2.userservice.dto.ManagerDto;
 import com.sk.projekat2.userservice.dto.TokenRequestDto;
 import com.sk.projekat2.userservice.dto.TokenResponseDto;
-import com.sk.projekat2.userservice.dto.UserCreateDto;
-import com.sk.projekat2.userservice.dto.UserDto;
-import com.sk.projekat2.userservice.service.UserService;
+import com.sk.projekat2.userservice.service.ManagerService;
 
 @RestController
 @RequestMapping("/manager")
 public class ManagerController {
 	
-	private UserService userService;
+	private ManagerService managerService;
 
-	public ManagerController(UserService userService) {
-		this.userService = userService;
+	public ManagerController(ManagerService managerService) {
+		this.managerService = managerService;
 	}
 
 	@GetMapping
-	public ResponseEntity<Page<UserDto>> getAllManagers(Pageable pageable){
-		return new ResponseEntity<>(userService.findAll(pageable), HttpStatus.OK);
+	public ResponseEntity<Page<ManagerDto>> getAllManagers(Pageable pageable){
+		return new ResponseEntity<>(managerService.findAll(pageable), HttpStatus.OK);
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<UserDto> getManagerById(@PathVariable("id") Long id){
-		return new ResponseEntity<>(userService.findById(id), HttpStatus.OK);
+	public ResponseEntity<ManagerDto> getManagerById(@PathVariable("id") Long id){
+		return new ResponseEntity<>(managerService.findById(id), HttpStatus.OK);
 	}
 	
 	
 	@PostMapping
-	public ResponseEntity<UserDto> saveManager(@RequestBody ManagerCreateDto managerCreateDto){
-		return new ResponseEntity<>(userService.add(managerCreateDto), HttpStatus.CREATED);
+	public ResponseEntity<ManagerDto> saveManager(@RequestBody ManagerCreateDto managerCreateDto){
+		return new ResponseEntity<>(managerService.add(managerCreateDto), HttpStatus.CREATED);
 	}
 	
 	@PostMapping("/login")
     public ResponseEntity<TokenResponseDto> loginManager(@RequestBody TokenRequestDto tokenRequestDto) {
-        return new ResponseEntity<>(userService.login(tokenRequestDto), HttpStatus.OK);
+        return new ResponseEntity<>(managerService.login(tokenRequestDto), HttpStatus.OK);
     }
 	
 	

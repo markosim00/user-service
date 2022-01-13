@@ -8,6 +8,6 @@ import com.sk.projekat2.userservice.domain.*;
 
 public interface ManagerRepository extends JpaRepository<Manager, Long>{
 	
-	Optional<User> findUserByUsernameAndPassword(String username, String password);
+	Optional<Manager> findManagerByUsernameAndPassword(String username, String password);
 
 }

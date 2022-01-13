@@ -14,6 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sk.projekat2.userservice.service.UserService;
+
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+
 import com.sk.projekat2.userservice.dto.*;
 
 
@@ -27,6 +32,7 @@ public class UserController {
 		this.userService = userService;
 	}
 	
+	
 	@GetMapping
 	public ResponseEntity<Page<UserDto>> getAllUsers(Pageable pageable){
 		return new ResponseEntity<>(userService.findAll(pageable), HttpStatus.OK);
@@ -37,7 +43,7 @@ public class UserController {
 		return new ResponseEntity<>(userService.findById(id), HttpStatus.OK);
 	}
 	
-	
+
 	@PostMapping
 	public ResponseEntity<UserDto> saveUser(@RequestBody UserCreateDto userCreateDto){
 		return new ResponseEntity<>(userService.add(userCreateDto), HttpStatus.CREATED);

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,6 +30,11 @@ public class UserController {
 	@GetMapping
 	public ResponseEntity<Page<UserDto>> getAllUsers(Pageable pageable){
 		return new ResponseEntity<>(userService.findAll(pageable), HttpStatus.OK);
+	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<UserDto> getUserById(@PathVariable("id") Long id){
+		return new ResponseEntity<>(userService.findById(id), HttpStatus.OK);
 	}
 	
 	

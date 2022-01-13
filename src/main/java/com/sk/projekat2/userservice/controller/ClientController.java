@@ -5,41 +5,51 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sk.projekat2.userservice.dto.ClientCreateDto;
+import com.sk.projekat2.userservice.dto.ClientDto;
 import com.sk.projekat2.userservice.dto.TokenRequestDto;
 import com.sk.projekat2.userservice.dto.TokenResponseDto;
 import com.sk.projekat2.userservice.dto.UserCreateDto;
 import com.sk.projekat2.userservice.dto.UserDto;
+import com.sk.projekat2.userservice.service.ClientService;
 import com.sk.projekat2.userservice.service.UserService;
 
 @RestController
 @RequestMapping("/user")
 public class ClientController {
 	
-	private UserService userService;
+	private ClientService clientService;
 
-	public ClientController(UserService userService) {
-		this.userService = userService;
+	public ClientController(ClientService clientService) {
+		this.clientService = clientService;
 	}
 	
 	@GetMapping
-	public ResponseEntity<Page<UserDto>> getAllClients(Pageable pageable){
-		return new ResponseEntity<>(userService.findAll(pageable), HttpStatus.OK);
+	public ResponseEntity<Page<ClientDto>> getAllClients(Pageable pageable){
+		return new ResponseEntity<>(clientService.findAll(pageable), HttpStatus.OK);
+	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<ClientDto> getClientById(@PathVariable("id") Long id){
+		return new ResponseEntity<>(clientService.findById(id), HttpStatus.OK);
 	}
 	
 	
 	@PostMapping
-	public ResponseEntity<UserDto> saveClient(@RequestBody UserCreateDto userCreateDto){
-		return new ResponseEntity<>(userService.add(userCreateDto), HttpStatus.CREATED);
+	public ResponseEntity<ClientDto> saveClient(@RequestBody ClientCreateDto clientCreateDto){
+		return new ResponseEntity<>(clientService.add(clientCreateDto), HttpStatus.CREATED);
 	}
 	
 	@PostMapping("/login")
     public ResponseEntity<TokenResponseDto> loginClient(@RequestBody TokenRequestDto tokenRequestDto) {
-        return new ResponseEntity<>(userService.login(tokenRequestDto), HttpStatus.OK);
+        return new ResponseEntity<>(clientService.login(tokenRequestDto), HttpStatus.OK);
     }
 	
 	

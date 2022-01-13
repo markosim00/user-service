@@ -1,9 +1,12 @@
 package com.sk.projekat2.userservice.domain;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Client extends User{
 	
 	private String passportNumber;
-	private String numberOfReservations;
+	private int numberOfReservations;
 	
 	
 	public String getPassportNumber() {
@@ -12,12 +15,13 @@ public class Client extends User{
 	public void setPassportNumber(String passportNumber) {
 		this.passportNumber = passportNumber;
 	}
-	public String getNumberOfReservations() {
+	public int getNumberOfReservations() {
 		return numberOfReservations;
 	}
-	public void setNumberOfReservations(String numberOfReservations) {
+	public void setNumberOfReservations(int numberOfReservations) {
 		this.numberOfReservations = numberOfReservations;
 	}
+	
 	
 	
 }

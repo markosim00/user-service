@@ -8,7 +8,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.sk.projekat2.userservice.domain.Client;
 import com.sk.projekat2.userservice.domain.User;
+import com.sk.projekat2.userservice.dto.DiscountDto;
 import com.sk.projekat2.userservice.dto.TokenRequestDto;
 import com.sk.projekat2.userservice.dto.TokenResponseDto;
 import com.sk.projekat2.userservice.dto.UserCreateDto;
@@ -62,6 +64,18 @@ public class UserServiceImpl implements UserService{
 		claims.put("role", user.getRole().getName());
 		return new TokenResponseDto(tokenService.generate(claims));
 	}
+
+	@Override
+	public UserDto findById(Long id) {
+		User user = userRepository.findById(id)
+				.orElseThrow(() -> new NotFoundException(String
+						.format("User with id: %d not found", id)));
+		return userMapper.userToUserDto(user);
+	}
+
+	
+
+	
 	
 	
 

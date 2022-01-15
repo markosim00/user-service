@@ -1,5 +1,7 @@
 package com.sk.projekat2.userservice.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -44,12 +46,12 @@ public class ClientController {
     }
 	
 	@PostMapping
-	public ResponseEntity<ClientDto> saveClient(@RequestBody ClientCreateDto clientCreateDto){
+	public ResponseEntity<ClientDto> saveClient(@RequestBody @Valid ClientCreateDto clientCreateDto){
 		return new ResponseEntity<>(clientService.add(clientCreateDto), HttpStatus.CREATED);
 	}
 	
 	@PostMapping("/login")
-    public ResponseEntity<TokenResponseDto> loginClient(@RequestBody TokenRequestDto tokenRequestDto) {
+    public ResponseEntity<TokenResponseDto> loginClient(@RequestBody @Valid TokenRequestDto tokenRequestDto) {
         return new ResponseEntity<>(clientService.login(tokenRequestDto), HttpStatus.OK);
     }
 	

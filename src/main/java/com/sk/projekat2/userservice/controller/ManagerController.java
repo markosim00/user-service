@@ -1,5 +1,7 @@
 package com.sk.projekat2.userservice.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -39,12 +41,12 @@ public class ManagerController {
 	
 	
 	@PostMapping
-	public ResponseEntity<ManagerDto> saveManager(@RequestBody ManagerCreateDto managerCreateDto){
+	public ResponseEntity<ManagerDto> saveManager(@RequestBody @Valid ManagerCreateDto managerCreateDto){
 		return new ResponseEntity<>(managerService.add(managerCreateDto), HttpStatus.CREATED);
 	}
 	
 	@PostMapping("/login")
-    public ResponseEntity<TokenResponseDto> loginManager(@RequestBody TokenRequestDto tokenRequestDto) {
+    public ResponseEntity<TokenResponseDto> loginManager(@RequestBody @Valid TokenRequestDto tokenRequestDto) {
         return new ResponseEntity<>(managerService.login(tokenRequestDto), HttpStatus.OK);
     }
 	
